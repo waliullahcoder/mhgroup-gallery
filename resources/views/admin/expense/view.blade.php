@@ -1,0 +1,76 @@
+@extends('layouts.admin.app')
+
+@section('content')
+    <div class="card">
+        <div class="card-header pe-2 py-2 gap-2">
+            <h6 class="h6 mb-0 text-uppercase text-nowrap flex-grow-1">
+                {{ isset($title) ? $title : 'Please Set Title' }}</h6>
+            @php
+                $route = \Request::route()->getName();
+                $indexRoute = str_replace('show', 'index', $route);
+            @endphp
+            <a href="{{ Route($indexRoute) }}" class="btn btn-primary btn-sm">Go Back</a>
+        </div>
+        <div class="card-body px-3">
+            <table class="table table-borderless table-striped table-responsive-sm">
+                <tbody>
+                    <tr>
+                        <th width="200">Credit Account Head</th>
+                        <th width="10">:</th>
+                        <td>{{ @$data->coa->head_name }} - {{ @$data->coa->head_code }}</td>
+                    </tr>
+                    <tr>
+                        <th width="200">Voucher No.</th>
+                        <th width="10">:</th>
+                        <td>{{ @$data->transaction_no }}</td>
+                    </tr>
+                    <tr>
+                        <th width="200">Date</th>
+                        <th width="10">:</th>
+                        <td>{{ date('d-m-Y', strtotime(@$data->date)) }}</td>
+                    </tr>
+                    <tr>
+                        <th width="200">Document</th>
+                        <th width="10">:</th>
+                        <td>
+                            @if (file_exists($data->document))
+                                <a href="{{ asset($data->document) }}" class="text-danger" target="_blank">Download</a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="200">Remarks</th>
+                        <th width="10">:</th>
+                        <td>{{ @$data->narration }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered table-striped table-responsive-sm">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        <th class="text-center" width="30">SL#</th>
+                        <th>Debit Account Head</th>
+                        <th width="200">Debit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($debitEntries as $item)
+                        <tr>
+                            <th class="text-center">{{ $loop->iteration }}</th>
+                            <th>{{ $item->coa->head_name }} - {{ $item->coa->head_code }}</th>
+                            <td>{{ number_format($item->debit_amount, 2) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <th colspan="2" class="text-end">Total Amount</th>
+                        <th>{{ number_format($debitEntries->sum('debit_amount'), 2) }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+@endsection

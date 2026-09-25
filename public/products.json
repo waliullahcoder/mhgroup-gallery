@@ -1,0 +1,42 @@
+[
+  {
+    "id": 178,
+    "name": "Mac Coffee creamer",
+    "code": "8887290140010",
+    "slug": "mac-coffee-creamer",
+    "thumbnail": "media/product/2025-04-28-9eAEhpQeEonNQeuOWbEfUAtINbxKa3DWLTQmJpcX.webp",
+    "price": {
+      "online_price": 180
+    }
+  },
+  {
+    "id": 183,
+    "name": "Mac Coffee Gold Pouch 95g",
+    "code": "8887290130073",
+    "slug": "mac-coffee-gold-pouch-95g-1",
+    "thumbnail": "media/product/2025-04-28-NfWQpyejeMHcljj8ekGJVECGPM3B4m3vQ5NXEccr.webp",
+    "price": {
+      "online_price": 220
+    }
+  },
+  {
+    "id": 184,
+    "name": "Mac Coffee Classic jar 50g",
+    "code": "8887290129985",
+    "slug": "mac-coffee-classic-jar-50g",
+    "thumbnail": "media/product/2026-01-11-V7BeCxwmNsvnyt2ZA421AvHC7YLEOHzlmvYyQtcr.webp",
+    "price": {
+      "online_price": 150
+    }
+  },
+  {
+    "id": 185,
+    "name": "Mac Coffee Classic jar 100g",
+    "code": "8887290130028",
+    "slug": "mac-coffee-classic-jar-100g",
+    "thumbnail": "media/product/2025-04-28-vpdjX9C3iQgNNRuEuwM7VMQE3UJFqHt9IbfMdRO9.webp",
+    "price": {
+      "online_price": 260
+    }
+  }
+]

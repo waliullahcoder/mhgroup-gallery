@@ -1,0 +1,4 @@
+
+
+TABLE->orders->column->note
+TABLE->order_items->column->size
