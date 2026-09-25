@@ -51,159 +51,18 @@
                                         $type = $item['product_type'] ?? '';
                                     @endphp
 
-                                    @if($type == 'mirror')
-
-                                        {{-- Mirror Size --}}
-                                        <div class="mt-2">
-                                            <div class="row g-2">
-                                                <div class="col-12">
-                                                     <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                        <option value="">Select Size</option>
-                                                        @for($height = 18; $height <= 72; $height += 6)
-                                                            @for($width = 18; $width <= 72; $width += 6)
-                                                                <option value="{{ $height }}X{{ $width }}">
-                                                                    {{ $height }}" X {{ $width }}"
-                                                                </option>
-                                                            @endfor
-                                                        @endfor
-                                                    </select>
-                                                </div>
-                                            </div>
+                                    <div class="mt-2" style="text-align:center;">
+                                        @php 
+                                       $variant = App\Models\ProductVariant::where('id',$item['variant_id'])->first();
+                                       $product = App\Models\Product::where('id',$item['id'])->first();
+                                      
+                                        @endphp
+                                        
+                                         @if($variant)
+                                         {{ $variant->variant .' '. $product->uom->name ?? '-' }}
+                                         <input type="hidden" name="size[]" value="{{ $variant->variant . ' '.$product->uom->name ?? '-' }}">
+                                         @else - @endif  
                                         </div>
-
-                                    @elseif($type == 'cloths')
-
-                                        {{-- Cloth Size --}}
-                                        <div class="mt-2">
-                                           <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Size</option>
-                                                <option value="S">Small (S)</option>
-                                                <option value="M">Medium (M)</option>
-                                                <option value="L">Large (L)</option>
-                                                <option value="XL">Extra Large (XL)</option>
-                                                <option value="XXL">Double Extra Large (XXL)</option>
-                                            </select>
-                                        </div>
-
-                                    @elseif($type == 'earrings')
-
-                                        {{-- Ornament Size --}}
-                                        <div class="mt-2">
-                                            <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Size</option>
-                                                <option value="Free Size">Free Size</option>
-                                                <option value="Small">Small</option>
-                                                <option value="Medium">Medium</option>
-                                                <option value="Large">Large</option>
-                                            </select>
-                                        </div>
-                                    @elseif($type == 'bangles')
-
-                                        {{-- Ornament Size --}}
-                                        <div class="mt-2">
-                                           <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Size</option>
-                                                <option value="2.2">2.2 (Small)</option>
-                                                <option value="2.4">2.4 (Medium)</option>
-                                                <option value="2.6">2.6 (Large)</option>
-                                                <option value="2.8">2.8 (XL)</option>
-                                                <option value="2.10">2.10 (XXL)</option>
-                                            </select>
-                                        </div>
-                                    @elseif($type == 'anklet')
-
-                                        {{-- Ornament Size --}}
-                                        <div class="mt-2">
-                                          <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Size</option>
-                                                <option value="6 inch">6 Inch (Small)</option>
-                                                <option value="7 inch">7 Inch (Medium)</option>
-                                                <option value="8 inch">8 Inch (Large)</option>
-                                                <option value="9 inch">9 Inch (XL)</option>
-                                                <option value="10 inch">10 Inch (XXL)</option>
-                                            </select>
-                                        </div>
-                                    @elseif($type == 'bracelet')
-
-                                        {{-- Ornament Size --}}
-                                        <div class="mt-2">
-                                         <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Size</option>
-                                                <option value="15 cm">15 cm</option>
-                                                <option value="16 cm">16 cm</option>
-                                                <option value="17 cm">17 cm</option>
-                                                <option value="18 cm">18 cm</option>
-                                                <option value="19 cm">19 cm</option>
-                                                <option value="20 cm">20 cm</option>
-                                                <option value="21 cm">21 cm</option>
-                                            </select>
-                                        </div>
-                                    @elseif($type == 'ring')
-
-                                        {{-- Ornament Size --}}
-                                        <div class="mt-2">
-                                         <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Ring Size</option>
-                                                <option value="US 5">US 5</option>
-                                                <option value="US 6">US 6</option>
-                                                <option value="US 7">US 7</option>
-                                                <option value="US 8">US 8</option>
-                                                <option value="US 9">US 9</option>
-                                                <option value="US 10">US 10</option>
-                                                <option value="US 11">US 11</option>
-                                                <option value="US 12">US 12</option>
-                                            </select>
-                                        </div>
-                                    @elseif($type == 'necklace')
-
-                                        {{-- Ornament Size --}}
-                                        <div class="mt-2">
-                                        <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Necklace Size</option>
-                                                <option value="14 inch">14 Inch (Choker)</option>
-                                                <option value="16 inch">16 Inch</option>
-                                                <option value="18 inch">18 Inch (Most Popular)</option>
-                                                <option value="20 inch">20 Inch</option>
-                                                <option value="22 inch">22 Inch</option>
-                                                <option value="24 inch">24 Inch</option>
-                                                <option value="30 inch">30 Inch (Long Necklace)</option>
-                                            </select>
-                                        </div>
-                                    @elseif($type == 'bra')
-
-                                        {{-- Ornament Size --}}
-                                        <div class="mt-2">
-                                        <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Bra Size</option>
-                                                <option value="32">32</option>
-                                                <option value="34">34</option>
-                                                <option value="36">36</option>
-                                                <option value="38">38</option>
-                                                <option value="40">40</option>
-                                                <option value="42">42</option>
-                                            </select>
-                                        </div>
-
-                                    @elseif($type == 'fragrance')
-
-                                        {{-- Fragrance Volume --}}
-                                        <div class="mt-2">
-                                            <select name="size[{{ $item['id'] }}]" class="form-select form-select-sm">
-                                                <option value="">Select Volume</option>
-                                                @for($ml = 10; $ml <= 100; $ml += 10)
-                                                    <option value="{{ $ml }}ML">{{ $ml }} ML</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                     @elseif($type == 'other')
-
-                                        {{-- Fragrance Volume --}}
-                                        <!-- <div class="mt-2">
-                                            <input type="text" name="size[{{ $item['id'] }}]" class="form-control">
-                                        </div> -->
-                                        -
-
-                                    @endif
                                 </td>
                                     <td class="text-center">
                                         <span class="qty-badge">{{ $item['qty'] }}</span>

@@ -6,6 +6,7 @@ use App\Models\Slider;
 use App\Models\HomeSection;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use App\Http\Controllers\Controller;
 use App\Services\FrontEndService;
 class CartController extends Controller
@@ -18,7 +19,13 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
+        
         $product = Product::findOrFail($request->product_id);
+         if($request->variant_id){
+            $price = ProductVariant::find($request->variant_id)->sale_price;
+         }else{
+            $price = $product->sale_price;
+         }
         $cart = session()->get('cart', []);
         if (isset($cart[$product->id])) {
             $cart[$product->id]['qty']++;
@@ -28,7 +35,7 @@ class CartController extends Controller
                 'code'  => $product->code,
                 'product_type'  => $product->product_type,
                 'name'  => $product->name,
-                'price' => $product->sale_price,
+                'price' => $price,
                 'qty'   => 1,
                 'variant_id' => $request->variant_id,
                 'image' => $product->thumbnail,

@@ -265,44 +265,93 @@ $(document).ready(function(){
 {{-- Add + --}}
 <script>
 $(document).on('click', '.add-to-cart', function(e) {
+
     e.preventDefault();
+
     let button = $(this);
 
     let productId = button.data('id');
-    let variantId = button.data('variant_id');
+
+    // IMPORTANT: HTML এ data-variant-id হলে এখানে এভাবেই নিতে হবে
+    let variantId = button.attr('data-variant-id');
+
     let image = button.closest('.product-card').find('.product-img');
+
     let cart = $('.cart-icon');
 
-    if (!image.length) {
-        console.warn('Product image not found for flying animation');
+
+    console.log('Product ID:', productId);
+    console.log('Variant ID:', variantId);
+
+
+    // Variant অবশ্যই থাকতে হবে
+    if (!variantId) {
+        alert('Please select a variant first.');
         return;
     }
 
-    let flyingImg = image.clone()
-        .css({
-            position: 'absolute',
-            zIndex: 999,
-            width: image.width(),
-            top: image.offset().top,
-            left: image.offset().left
-        })
-        .appendTo('body');
 
-    flyingImg.animate({
-        top: cart.offset().top,
-        left: cart.offset().left,
-        width: 20,
-        opacity: 0.5
-    }, 700, function () {
-        flyingImg.remove();
-    });
+    // Flying image
+    if (image.length && cart.length) {
 
-    $.post("{{ route('cart.add') }}", {
-        _token: "{{ csrf_token() }}",
-        product_id: productId,
-        variant_id: variantId
-    }, function (res) {
-        $('.cart-count').text(res.count);
+        let flyingImg = image.clone()
+            .css({
+                position: 'absolute',
+                zIndex: 9999,
+                width: image.width(),
+                top: image.offset().top,
+                left: image.offset().left
+            })
+            .appendTo('body');
+
+
+        flyingImg.animate({
+            top: cart.offset().top,
+            left: cart.offset().left,
+            width: 20,
+            opacity: 0.5
+        }, 700, function () {
+
+            flyingImg.remove();
+
+        });
+
+    }
+
+
+    // Add to cart
+    $.ajax({
+
+        url: "{{ route('cart.add') }}",
+
+        method: "POST",
+
+        data: {
+
+            _token: "{{ csrf_token() }}",
+
+            product_id: productId,
+
+            variant_id: variantId
+
+        },
+
+        success: function(res) {
+
+            $('.cart-count').text(res.count);
+
+            console.log('Added:', res);
+
+        },
+
+        error: function(xhr) {
+
+            console.log(xhr.responseText);
+
+            alert('Unable to add product to cart.');
+
+        }
+
     });
 
 });

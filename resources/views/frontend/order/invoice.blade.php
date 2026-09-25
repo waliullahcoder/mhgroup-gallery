@@ -142,7 +142,6 @@
                 <th style="text-align:left;">Code</th>
                 <th style="text-align:left;">Product</th>
                 <th style="text-align:left;">Size/Unit</th>
-                <th>Category</th>
                 <th class="text-center">Qty</th>
                 <th class="text-right">Price</th>
                 <th style="text-align:right;">Total</th>
@@ -153,8 +152,7 @@
             <tr>
                 <td>{{ $item->product->code }}</td>
                 <td>{{ $item->product->name }}</td>
-                <td>{{ $item->size }}</td>
-                <td style="text-align:center;">{{ $item->product->category->name ?? '-' }}</td>
+                <td>{{ App\Models\ProductVariant::where('id',$item->product_variant_id)->first()?->variant }} {{ $item->product->uom->name ?? '-' }}</td>
                 <td style="text-align:center;">{{ $item->qty }}</td>
                 <td style="text-align:center;">৳{{ number_format($item->price,2) }}</td>
                 <td style="text-align:right;">৳{{ number_format($item->total,2) }}</td>
