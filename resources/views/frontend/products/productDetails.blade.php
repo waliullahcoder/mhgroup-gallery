@@ -57,8 +57,12 @@
     left:50%;
     z-index:999999;
 }
+ .singlembtn{
+      margin:1%;
+     }
 
 </style>
+
 <div class="product-details-page py-4 animate__animated animate__fadeInDownBig">
     <div class="container">
 
@@ -316,7 +320,7 @@
 
                 <button
                     type="button"
-                    class="variant-btn {{ $key == 0 ? 'active' : '' }}"
+                    class="btn btn-small btn-success variant-btn {{ $key == 0 ? 'active' : '' }}"
                     data-variant-id="{{ $variant->id }}"
                     data-price="{{ $variant->sale_price }}"
                     data-regular-price="{{ $variant->regular_price }}"
@@ -507,14 +511,13 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 @endif
 
-
 <!-- ACTION BUTTONS -->
 <div class="d-flex flex-wrap gap-2 mb-4 action-buttons">
 
     <!-- ADD TO CART -->
     <button
         type="button"
-        class="btn btn-danger add-to-cart"
+        class="btn btn-danger add-to-cart singlembtn"
         data-id="{{ $product->id }}"
         data-variant-id="{{ $product->variants->first()->id ?? '' }}"
     >
@@ -534,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function () {
     @if($alreadyWishlisted)
 
         <button
-            class="btn btn-outline-danger"
+            class="btn btn-outline-danger singlembtn"
             disabled
         >
             ❤️ Wishlisted
@@ -545,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <form
             action="{{ route('wishlist.store', $product->id) }}"
             method="POST"
-            class="d-inline"
+            class="d-inline singlembtn"
         >
             @csrf
 
@@ -564,7 +567,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <form
         action="{{ route('cart.buyNow') }}"
         method="POST"
-        class="d-inline"
+        class="d-inline singlembtn"
         id="buyNowForm"
     >
         @csrf
@@ -595,14 +598,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     <!-- WHATSAPP -->
-    <a
+    <!-- <a
         href="https://wa.me/8801575020231?text=Hello%20I%20want%20to%20contact%20you"
         target="_blank"
         class="btn btn-success"
     >
         <i class="fab fa-whatsapp me-1"></i>
         WhatsApp
-    </a>
+    </a> -->
 
 </div>
 
@@ -634,10 +637,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                  alt="">
                             <div>
                                 <a href="{{ route('product.details', $item->id) }}"
-                                   class="small fw-semibold d-block">
+                                   class="small fw-semibold d-block" style="color: #D4AF37">
                                    {{ \Illuminate\Support\Str::limit($item->name, 30) }}
                                 </a>
-                                <p>{{ $item->code }}</p>
+                                <p style="color: #D4AF37">{{ $item->code }}</p>
                                 <span class="text-danger">
                                     {{ number_format($item->sale_price ?? $item->regular_price, 2) }} ৳
                                 </span>

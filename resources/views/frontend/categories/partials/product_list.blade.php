@@ -74,6 +74,7 @@
                                                 <div class="product-card-action">
                                                    <button class="btn btn-sm btn-danger add-to-cart"
                                                         data-variant_id="{{ $product->variants[0]->id ?? null }}"
+                                                        data-variant-id="{{ $product->variants->first()?->id }}"
                                                         data-id="{{ $product->id }}">
                                                     Add +
                                                 </button>

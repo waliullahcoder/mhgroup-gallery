@@ -31,6 +31,55 @@
     @include('layouts.frontend.partial.alert')
     @include('layouts.frontend.partial.footer')
     @include('layouts.frontend.partial.scripts')
+
+ <!-- Floating WhatsApp Button -->
+<a href="https://wa.me/8801575020231" 
+   class="floating-whatsapp" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with us on WhatsApp">
+
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<style>
+    .floating-whatsapp {
+        position: fixed;
+        right: 6%;
+        bottom: 20px;
+        width: 58px;
+        height: 58px;
+        background: #25D366;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 32px;
+        z-index: 99999;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease;
+    }
+
+    .floating-whatsapp:hover {
+        background: #20b957;
+        color: #fff;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 576px) {
+        .floating-whatsapp {
+            width: 52px;
+            height: 52px;
+            right: 15px;
+            bottom: 15px;
+            font-size: 28px;
+        }
+    }
+</style>
+
     {{-- <script type="text/javascript" src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 

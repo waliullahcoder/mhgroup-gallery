@@ -19,7 +19,7 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        
+       
         $product = Product::findOrFail($request->product_id);
          if($request->variant_id){
             $price = ProductVariant::find($request->variant_id)->sale_price;
