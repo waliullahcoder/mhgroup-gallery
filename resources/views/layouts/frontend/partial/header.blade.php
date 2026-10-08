@@ -1,6 +1,6 @@
 
 <!-- Start Header Top -->
-@include('layouts.frontend.partial.header_top')
+<!-- @include('layouts.frontend.partial.header_top') -->
 <!-- End Header Top -->
 
 <header class="main-header">

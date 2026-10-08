@@ -329,6 +329,7 @@ class ProductController extends Controller
         }
 
         $additionalData = [
+            
             'brands' => Brand::where('status', true)->orderBy('name', 'asc')->get(),
             'uoms' => Uom::where('status', true)->orderBy('name', 'asc')->get(),
             'categories' => Category::whereNotNull('parent_id')->whereIn('position', ['header','homepage'])->where('status', true)->orderBy('name', 'asc')->get(),
@@ -347,7 +348,7 @@ class ProductController extends Controller
        
         $request->validate([
             'name'        => 'required',
-            'uom_id'      => 'required',
+            // 'uom_id'      => 'required',
             // 'category_id' => 'required',
             'category_ids' => 'required|array',
             'category_ids.*' => 'exists:categories,id',
@@ -358,14 +359,77 @@ class ProductController extends Controller
             DB::transaction(function () use ($request, $id) {
 
                 $product = $this->model::findOrFail($id);
-                $data = $request->except(['_token','choice']);
+                $data = $request->except(['uom_id', '_token','choice']);
                 if(empty($request->code)){
                     $date = date('Ymd');
                     $data['code'] = 'COD' . $date . $id;
                 }
                 // ✅ PRODUCT UPDATE
                 $product = $this->productService->update($data, $product);
-                // $product = $this->productService->update($request->except(['_token', 'choice']), $product);
+                
+                // ✅ VARIANT UPDATE
+                    if ($request->filled('uom_id') && is_array($request->uom_id)) {
+
+                        $keepIds      = [];
+                        $discount     = $request->discount ?? 0;
+                        $discountType = $request->discount_type ?? 'amount';
+
+                        foreach ($request->uom_id as $key => $uomId) {
+
+                            if (empty($uomId)) {
+                                continue;
+                            }
+
+                            $regularPrice = $request->price[$key] ?? 0;
+
+                            if ($discountType === 'percent') {
+                                $salePrice = $regularPrice - ($regularPrice * $discount / 100);
+                            } else {
+                                $salePrice = $regularPrice - $discount;
+                            }
+
+                            $salePrice = max(0, $salePrice);
+
+                            $data = [
+                                'uom_id'         => $uomId,
+                                'variant'        => $request->size[$key] ?? null,
+                                'sku'            => $request->sku,
+                                'purchase_price' => $request->purchase_price,
+                                'regular_price'  => $regularPrice,
+                                'discount_type'  => $discountType,
+                                'discount'       => $discount,
+                                'sale_price'     => $salePrice,
+                                'status'         => true,
+                            ];
+
+                            // existing variant hole update
+                            $variantId = $request->variant_id[$key] ?? null;
+
+                            if ($variantId) {
+                                $variant = ProductVariant::where('product_id', $product->id)
+                                    ->where('id', $variantId)
+                                    ->first();
+
+                                if ($variant) {
+                                    $variant->update($data);
+                                    $keepIds[] = $variant->id;
+                                    continue;
+                                }
+                            }
+
+                            // notun variant hole create
+                            $newVariant = ProductVariant::create($data + [
+                                'product_id' => $product->id,
+                            ]);
+
+                            $keepIds[] = $newVariant->id;
+                        }
+
+                        // form theke remove kora variant gulo delete
+                        ProductVariant::where('product_id', $product->id)
+                            ->whereNotIn('id', $keepIds)
+                            ->delete();
+                    }
 
                 // ✅ VARIANT (NULL SAFE)
                 if ($request->filled('choice_no')) {

@@ -21,141 +21,22 @@
             tabindex="0">
             <h5 class="mb-3 pb-3 fs-17 fw-700" style="border-bottom: 1px dashed #e4e5eb;">Product Information</h5>
             <div class="row g-3">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <label for="name" class="form-label"><b>Product Name <span class="text-danger">*</span></b></label>
                     <input type="text" class="form-control" id="name" name="name"
                         value="{{ old('name', $data->name) }}" placeholder="Name" required>
                 </div>
                 <input type="hidden"  name="code" value="{{ old('code', $data->code) }}">
                
-                <div class="col-sm-6">
-                    <label for="brand_id" class="form-label"><b>Brand</b></label>
-                    <select class="form-select select" name="brand_id" id="brand_id" data-placeholder="Select Brand">
-                        <option value=""></option>
-                        @foreach ($additionalData['brands'] as $item)
-                            <option value="{{ $item->id }}"
-                                {{ old('brand_id', $data->brand_id) == $item->id ? 'selected' : '' }}>
-                                {{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-sm-6">
-                    <label for="uom_id" class="form-label"><b>Unit <span class="text-danger">*</span></b></label>
-                    <select class="form-select select" name="uom_id" id="uom_id" data-placeholder="Select Unit"
-                        required>
-                        <option value=""></option>
-                        @foreach ($additionalData['uoms'] as $item)
-                            <option value="{{ $item->id }}"
-                                {{ old('uom_id', $data->uom_id) == $item->id ? 'selected' : '' }}>
-                                {{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-6">
-                    <label for="vendor_id" class="form-label"><b>Suppliers</b></label>
-                    <select name="vendor_id[]" id="vendor_id" class="form-select select" data-placeholder="Select Vendors"
-                        multiple>
-                        <option value=""></option>
-                        @foreach ($additionalData['vendors'] as $item)
-                            <option value="{{ $item->id }}"
-                                {{ in_array($item->id, old('vendor_id', $data->vendors->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                {{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                 <div class="col-sm-6">
-                    <label for="publication_id" class="form-label"><b>Publication <span class="text-danger">*</span></b></label>
-                    <select class="form-select select" name="publication_id" id="publication_id"
-                        data-placeholder="Select Publication" required>
-                        <option value=""></option>
-                        @foreach ($additionalData['publications'] as $item)
-                            <option value="{{ $item->id }}" {{ $data->publication_id == $item->id ? 'selected' : '' }}>
-                                {{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-               
                    @php
                         // Existing edition for this product (edit mode)
                         $existingEdition = App\Models\ProductEdition::where('product_id', $data->id)->first();
                     @endphp
 
-                    <div class="col-sm-6">
-                        <label for="edition_name" class="form-label"><b>Edition <span class="text-danger">*</span></b></label>
-                        <select name="edition_name" id="edition_name"
-                            class="form-control @error('edition_name') is-invalid @enderror" required>
-                            @php
-                                $editions = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh'];
-                            @endphp
-                            @foreach($editions as $ed)
-                                <option value="{{ $ed }} Edition"
-                                    {{ (old('edition_name') == $ed . ' Edition' || ($existingEdition && $existingEdition->name == $ed . ' Edition')) ? 'selected' : '' }}>
-                                    {{ $ed }} Edition
-                                </option>
-                            @endforeach
-                        </select>
-
-                        @error('edition_name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="col-6">
-                    <label for="tags" class="form-label"><b>Tags</b></label>
-                    <input type="text" class="form-control" id="tags" name="tags[]"
-                        value="{{ json_encode($data->tags->pluck('name')->toArray()) }}" placeholder="Tags">
-                </div>
-                    <div class="col-sm-6">
-                    <label for="product_type" class="form-label"><b>Type <span class="text-danger">*</span></b></label>
-                            <select class="form-control select" name="product_type"
-                                data-placeholder="Select Product Type" required>
-                                <option value="other" {{ $data->product_type == 'other' ? 'selected' : '' }}>Other</option>
-                                <option value="fragrance" {{ $data->product_type == 'fragrance' ? 'selected' : '' }}>Fragrance</option>
-                                <option value="mirror" {{ $data->product_type == 'mirror' ? 'selected' : '' }}>Mirror</option>
-                                <option value="cloths" {{ $data->product_type == 'cloths' ? 'selected' : '' }}>Cloths</option>
-                                <option value="frozen" {{ $data->product_type == 'frozen' ? 'selected' : '' }}>Frozen</option>
-                                <option value="ornaments" {{ $data->product_type == 'ornaments' ? 'selected' : '' }}>Ornaments</option>
-                                <option value="book" {{ $data->product_type == 'book' ? 'selected' : '' }}>Book
-                                </option>
-                            </select>
-                        </div>
                 
-                <div class="col-12">
-                    <div class="row g-2">
-                        <label for="favorite" class="col-sm-3 col-md-3 col-lg-2 control-label"><b>Is Favorite:</b></label>
-                        <div class="col-sm-9 col-md-9 col-lg-10">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="favorite" name="favorite"
-                                    {{ $data->favorite ? 'checked' : '' }}>
-                                <label for="favorite" class="custom-control-label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="row g-2">
-                        <label for="custom_barcode" class="col-sm-3 col-md-3 col-lg-2 control-label"><b>Is Custom
-                                Barcode:</b></label>
-                        <div class="col-sm-9 col-md-9 col-lg-10">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="custom_barcode"
-                                    name="custom_barcode" {{ $data->custom_barcode ? 'checked' : '' }}>
-                                <label for="custom_barcode" class="custom-control-label"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12" id="barcodeWrapper"
-                    style="display: {{ $data->custom_barcode ? 'block' : 'none' }};">
-                    <div class="row g-2">
-                        <label for="barcode" class="col-sm-3 col-md-3 col-lg-2 control-label"><b>Custom
-                                Barcode:</b></label>
-                        <div class="col-sm-9 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="barcode" name="barcode"
-                                value="{{ old('barcode', $data->barcode) }}" placeholder="Barcode"
-                                {{ $data->custom_barcode ? 'required' : '' }}>
-                        </div>
-                    </div>
-                </div>
+                    
+                
+                
                 <div class="col-12">
                     <label for="description" class="form-label"><b>Short Description</b></label>
                     <textarea class="form-control description" id="description" name="short_description" cols="30"
@@ -253,73 +134,99 @@
                                 </option>
                             </select>
                         </div>
+
+<!-- Size & Price -->
+<div class="row g-3">
+    <label class="col-md-3 col-form-label">
+        <b>Size & Price</b>
+    </label>
+    <div class="col-md-9">
+        <div id="sizePriceContainer">
+
+            @php
+                // existing variants; na thakle ekta khali row dekhabe
+                $variants = $data->variants->count()
+                    ? $data->variants
+                    : collect([new \App\Models\ProductVariant()]);
+            @endphp
+
+            @foreach ($variants as $variant)
+                <div class="row g-2 mb-2 size-price-row">
+
+                    <!-- Variant ID (update er jonno dorkar) -->
+                    <input type="hidden" name="variant_id[]" value="{{ $variant->id }}">
+
+                    <!-- UOM -->
+                    <div class="col-md-4">
+                        <select class="form-select uom-select" name="uom_id[]" required>
+                            <option value="" disabled {{ $variant->uom_id ? '' : 'selected' }}>
+                                Select Unit
+                            </option>
+
+                            @foreach ($additionalData['uoms'] as $uom)
+                                <option value="{{ $uom->id }}"
+                                        data-uom-name="{{ $uom->name }}"
+                                        {{ $data->uom_id == $uom->id ? 'selected' : '' }}>
+                                    {{ $uom->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Size -->
+                    <div class="col-md-3">
+                        <input type="text"
+                               name="size[]"
+                               class="form-control size-input"
+                               placeholder="Size"
+                               value="{{ $variant->variant }}"
+                               required>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="col-md-3">
+                        <input type="number"
+                               name="price[]"
+                               class="form-control"
+                               min="0"
+                               step="0.01"
+                               placeholder="Price"
+                               value="{{ $variant->regular_price }}"
+                               required>
+                    </div>
+
+                    <!-- Add / Remove -->
+                    <div class="col-md-2">
+                        @if ($loop->first)
+                            <button type="button" class="btn btn-success add-more">
+                                <i class="fa fa-plus"></i> Add More
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-danger remove-row">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        @endif
+                    </div>
+
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <div class="row g-3">
-                        <label class="col-md-3 col-from-label" for="sku"><b>SKU</b></label>
-                        <div class="col-md-6">
-                            <input type="text" name="sku" id="sku" class="form-control" placeholder="SKU"
-                                value="{{ old('sku', $data->sku) }}">
-                        </div>
-                    </div>
-                </div>
+                
 
-                <div class="col-12">
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" value="Attributes" disabled>
-                        </div>
-                        <div class="col-md-8">
-                            <select name="choice_attributes[]" id="choice_attributes" class="form-control select"
-                                data-selected-text-format="count" data-live-search="true" multiple
-                                data-placeholder="Choose Attributes">
-                                @foreach ($additionalData['attributes'] as $attribute)
-                                    <option value="{{ $attribute->id }}"
-                                        {{ in_array($attribute->id, $data->unique_attributes->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                        {{ $attribute->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <p>Choose the attributes of this product and then input values of each attribute</p>
-                </div>
-
-                <div class="col-12">
-                    <div class="customer_choice_options row g-3" id="customer_choice_options">
-                        @foreach ($data->unique_attributes as $attribute)
-                            <div class="col-12">
-                                <div class="row g-3">
-                                    <div class="col-md-3">
-                                        <input type="hidden" name="choice_no[]" value="{{ $attribute->id }}">
-                                        <input type="text" class="form-control" name="choice[]"
-                                            value="{{ $attribute->name }}" placeholder="Choice Title" readonly>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <select class="form-control select attribute_choice"
-                                            name="choice_options_{{ $attribute->id }}[]" multiple
-                                            data-placeholder="Select {{ $attribute->name }}">
-
-                                            @foreach (\App\Models\AttributeValue::where('attribute_id', $attribute->id)->get() as $row)
-                                                <option value="{{ $row->id }}"
-                                                    {{ in_array($row->id, $attribute->values->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                                    {{ $row->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="sku_combination" id="sku_combination">
-                </div>
             </div>
         </div>
          <div class="tab-pane fade" id="nav-publish" role="tabpanel" aria-labelledby="nav-publish-tab" tabindex="0">
@@ -450,5 +357,113 @@
                 updateSku();
             });
         });
+
+
+
+  // UOM change Body
+
+    const container = document.getElementById('sizePriceContainer');
+
+    container.addEventListener('change', function (e) {
+
+        if (e.target.classList.contains('uom-select')) {
+
+            const select = e.target;
+
+            const selectedOption =
+                select.options[select.selectedIndex];
+
+            const uomName =
+                selectedOption.getAttribute('data-uom-name');
+
+            const row =
+                select.closest('.size-price-row');
+
+            const sizeInput =
+                row.querySelector('.size-input');
+
+            if (uomName) {
+                sizeInput.placeholder = 'Enter ' + uomName;
+            } else {
+                sizeInput.placeholder = 'Size';
+            }
+        }
+
+    });
+
+
+
+
+        
+    // Add More / Remove
+    container.addEventListener('click', function (e) {
+
+        // Add More
+        if (e.target.closest('.add-more')) {
+
+            const row = document.createElement('div');
+
+            row.className = 'row g-2 mb-2 size-price-row';
+
+            row.innerHTML = `
+                <div class="col-md-4">
+                    <select class="form-select uom-select"
+                            name="uom_id[]"
+                            required>
+
+                        <option value="" selected disabled>
+                            Select Unit
+                        </option>
+
+                        @foreach ($additionalData['uoms'] as $item)
+                            <option value="{{ $item->id }}"
+                                    data-uom-name="{{ $item->name }}">
+                                {{ $item->name }}
+                            </option>
+                        @endforeach
+
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="text"
+                           name="size[]"
+                           class="form-control size-input"
+                           placeholder="Size"
+                           required>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="number"
+                           name="price[]"
+                           class="form-control"
+                           min="0"
+                           step="0.01"
+                           placeholder="Price"
+                           required>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button"
+                            class="btn btn-danger remove-row">
+                        <i class="fa fa-trash"></i> Remove
+                    </button>
+                </div>
+            `;
+
+            container.appendChild(row);
+        }
+
+
+        // Remove
+        if (e.target.closest('.remove-row')) {
+
+            const row =
+                e.target.closest('.size-price-row');
+
+            row.remove();
+        }
+
+    });
     </script>
 @endpush
