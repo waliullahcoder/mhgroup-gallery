@@ -189,16 +189,16 @@ body {
             <!-- Cart + Login -->
             <div class="d-flex align-items-center gap-2" style="margin-right:50px;">
                 <a href="{{ route('cart.index') }}" class="cart-icon">
-                    <i class="fa-solid fa-cart-shopping" style="color:#D4AF37"></i>
+                    <i class="fa-solid fa-cart-shopping" style="color:#d11616"></i>
                     <span class="cart-count">{{ count(session('cart', [])) }}</span>
                 </a>
 
                 @if(Auth::check())
                     <a href="{{ Auth::user()->role_status == 0 ? route('frontend.user.dashboard') : route('admin.dashboard') }}">
-                        <b style="font-size: 13px;color: #D4AF37">{{ Auth::user()->name }}</b>
+                        <b style="font-size: 13px;color: #d11616">{{ Auth::user()->name }}</b>
                     </a>
                 @else
-                    <a href="{{ route('auth.signinPage') }}" style="font-size: 13px;color: #D4AF37">Sign in</a>
+                    <a href="{{ route('auth.signinPage') }}" style="font-size: 13px;color: #d11616">Sign in</a>
                 @endif
             </div>
         </div>

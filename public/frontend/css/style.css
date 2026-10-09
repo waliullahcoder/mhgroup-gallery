@@ -102,7 +102,7 @@ h6 {
 }
 
 .text-primary {
-    color: #D4AF37 !important;
+    color: #d11616 !important;
 }
 
 .text-secondary {
@@ -110,8 +110,8 @@ h6 {
 }
 
 .btn-primary {
-    background-color: #D4AF37;
-    border-color: #D4AF37;
+    background-color: #d11616;
+    border-color: #d11616;
     color: var(--bs-white);
 }
 
@@ -122,19 +122,19 @@ h6 {
 }
 
 .btn-outline-primary {
-    --bs-btn-color: #D4AF37;
-    --bs-btn-border-color: #D4AF37;
+    --bs-btn-color: #d11616;
+    --bs-btn-border-color: #d11616;
     --bs-btn-hover-color: var(--bs-white);
-    --bs-btn-hover-bg: #D4AF37;
-    --bs-btn-hover-border-color: #D4AF37;
+    --bs-btn-hover-bg: #d11616;
+    --bs-btn-hover-border-color: #d11616;
     --bs-btn-focus-shadow-rgb: 13, 110, 253;
     --bs-btn-active-color: var(--bs-white);
-    --bs-btn-active-bg: #D4AF37;
-    --bs-btn-active-border-color: #D4AF37;
+    --bs-btn-active-bg: #d11616;
+    --bs-btn-active-border-color: #d11616;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #D4AF37;
+    --bs-btn-disabled-color: #d11616;
     --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #D4AF37;
+    --bs-btn-disabled-border-color: #d11616;
     --bs-gradient: none;
 }
 
@@ -149,13 +149,13 @@ h6 {
 .btn.btn-secondary:first-child:active,
 :not(.btn-check)+.btn.btn-secondary:active,
 .btn-secondary:hover {
-    background-color: #D4AF37;
-    border-color: #D4AF37;
+    background-color: #d11616;
+    border-color: #d11616;
     color: var(--bs-white);
 }
 
 .bg-primary {
-    background-color: #D4AF37 !important;
+    background-color: #d11616 !important;
 }
 
 .bg-light {
@@ -244,7 +244,7 @@ h6 {
 .slick-arrow:focus,
 .slick-arrow:hover {
     background-color: var(--bs-white) !important;
-    color: #D4AF37 !important;
+    color: #d11616 !important;
     border-color: #E1E7EA;
 }
 
@@ -294,7 +294,7 @@ h6 {
 }
 
 .breadcrumb-item.active {
-    color: #D4AF37;
+    color: #d11616;
 }
 
 .pagination li>* {
@@ -308,16 +308,16 @@ h6 {
     text-align: center;
     display: block;
     min-width: 2.5em;
-    border: 1px solid #D4AF37;
+    border: 1px solid #d11616;
     height: 2.5em;
-    color: #D4AF37;
+    color: #d11616;
     margin: 0 2px;
     border-radius: 0.5rem;
 }
 
 .pagination li>*:hover,
 .pagination li.active>* {
-    background-color: #D4AF37;
+    background-color: #d11616;
     color: var(--bs-white);
 }
 
@@ -359,7 +359,7 @@ h6 {
     position: fixed;
     right: 25px;
     bottom: 60px;
-    background-color: #D4AF37;
+    background-color: #d11616;
     color: var(--bs-white);
     width: 40px;
     height: 40px;
@@ -372,7 +372,7 @@ h6 {
 
 /* =============== Header CSS =============== */
 .header-top {
-    background: #D4AF37;
+    background: #d11616;
     color: #e8ffdd;
     display: block;
     font-size: 13px;
@@ -401,7 +401,7 @@ h6 {
 }
 
 .main-header {
-    background-color: #D4AF37;
+    background-color: #d11616;
 }
 
 .header-middle {
@@ -453,7 +453,7 @@ h6 {
     width: 100%;
     display: flex;
     border: 1px solid #ddd;
-    border-bottom: 2px solid #D4AF37;
+    border-bottom: 2px solid #d11616;
     border-radius: 0 0.3rem 0.3rem 0;
     overflow: hidden;
     margin: 0 auto;
@@ -466,7 +466,7 @@ h6 {
 .search-btn {
     padding: 0;
     width: 50px;
-    background-color: #D4AF37;
+    background-color: #d11616;
     color: var(--bs-white);
     border-radius: 0;
     margin: -1px;
@@ -477,7 +477,7 @@ h6 {
 .search-btn.show,
 .search-btn:first-child:active,
 :not(.btn-check)+.search-btn:active {
-    background-color: #D4AF37;
+    background-color: #d11616;
     color: var(--bs-white);
 }
 
@@ -536,7 +536,7 @@ h6 {
 .menu-link {
     display: inline-block;
     padding: 8px 15px;
-    background-color:#D4AF37;
+    background-color:#d11616;
     margin-bottom: -1px;
     border-bottom: 1px solid #ffffff;
     border-radius: 0.3rem 0.3rem 0 0;
@@ -673,13 +673,13 @@ h6 {
     flex-grow: 1;
     margin: 0;
     font-weight: 400;
-    color: #D4AF37;
+    color: #d11616;
     margin: 5px;
 }
 
 .section-link {
     flex-shrink: 0;
-    background-color: #D4AF37;
+    background-color: #d11616;
     color: var(--bs-white);
     display: inline-flex;
     padding: 0.3rem 0.6rem 0.23rem;
@@ -783,7 +783,7 @@ h6 {
 .product-card-price ins {
     text-decoration: none;
     font-weight: 600;
-    color: #D4AF37;
+    color: #d11616;
 }
 
 del .Price-amount {
@@ -834,7 +834,7 @@ p{
 }
 
 .btn-cart {
-    background-color: #D4AF37;
+    background-color: #d11616;
     color: var(--bs-white);
     padding: 0.25rem 1rem 0.2rem;
 }
@@ -871,7 +871,7 @@ p{
 }
 
 .author-card:hover {
-    color: #D4AF37;
+    color: #d11616;
 }
 
 /* =============== Author CSS =============== */
@@ -888,8 +888,8 @@ p{
 }
 
 .category-card2:hover {
-    color: #D4AF37;
-    border-color: #D4AF37;
+    color: #d11616;
+    border-color: #d11616;
     background-color: rgb(212 147 43 / 10%);
 }
 

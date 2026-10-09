@@ -182,13 +182,13 @@
     <tr>
         <td class="brand-cell">
             <img src="{{ asset($settings->logo) }}" class="logo" alt="Logo">
-            <div class="brand-title">
+            <!-- <div class="brand-title">
                 @php
                     $nameParts = explode(' ', $settings->app_name ?? 'MH GALLERY', 2);
                 @endphp
                 <h1 class="brand-name"><span>{{ $nameParts[0] }}</span> {{ $nameParts[1] ?? '' }}</h1>
                 <div class="tagline">House of Royal Fragrance</div>
-            </div>
+            </div> -->
 
             <table class="contact-row">
                 <tr>

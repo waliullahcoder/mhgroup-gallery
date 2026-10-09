@@ -14,8 +14,11 @@
                 <h5 class="footer-title">Other Links</h5>
                 <ul class="footer-list">
                 
-                    @foreach ($menus['footer_col1_menus'] as $menu)
+                    <!-- @foreach ($menus['footer_col1_menus'] as $menu)
                     <li class="footer-item"><a class="footer-link" href="{{ route('info.page', $menu->id) }}">{{ $menu->name }}</a></li>
+                    @endforeach -->
+                    @foreach ($menus['footer_col1_menus'] as $menu)
+                    <li class="footer-item"><a class="footer-link"  target="_blank" href="{{$menu->menu_url}}">{{ $menu->name }}</a></li>
                     @endforeach
                 </ul>
             </div>
