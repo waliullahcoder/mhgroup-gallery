@@ -3,11 +3,11 @@
         <div class="col-6 col-md-4 col-lg-3"> <!-- Mobile 2, Tablet 3, Desktop 4 -->
             <div class="product-card-wrapper">
                 <div class="product-card">
-                    @if($product->discount>0)
+                    <!-- @if($product->discount>0)
                     <div class="{{ $product->discount_type == 'percent' ? 'discount-badge' : 'discount-badge-flat' }}">
                         <span class="product-discount">{{ number_format($product->discount) }}</span>
                     </div>
-                    @endif
+                    @endif -->
                     <a class="z-2" href="{{ route('product.details', $product->id) }}">
                         <figure class="product-card-image ratio" style="--bs-aspect-ratio: 100%">
                             <img class="object-fit-contain product-img"

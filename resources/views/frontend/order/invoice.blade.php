@@ -151,9 +151,83 @@
             text-transform: uppercase; line-height: 1.8;
         }
 
+        /* =====================================================
+           PRINT: A4 er upor-er half (max 3 product), ink-saving
+           ===================================================== */
+        @page { size: A4 portrait; margin: 5mm 6mm; }
+
         @media print {
+            /* {
+                -webkit-print-color-adjust: economy !important;
+                print-color-adjust: economy !important;
+                background: transparent !important;   
+                box-shadow: none !important;
+            } */
+
+            html, body { width: 100%; }
+            /* body { font-size: 10px; padding: 0; margin: 0; color: #000; } */
             .no-print { display: none !important; }
-            body { padding: 0; }
+
+            /* Header */
+            .brand-cell { padding-right: 10px; }
+            .meta-cell { border-left-width: 2px !important; padding-left: 14px !important; }
+            .logo { height: 48px; margin-right: 8px; }
+            .contact-row { margin-top: 5px; font-size: 9.5px; }
+            .contact-row td { padding-right: 8px; }
+            .icon {
+                width: 15px; height: 15px; line-height: 13px; font-size: 8px; margin-right: 3px;
+                border: 1px solid var(--red); color: var(--red) !important;
+            }
+            .invoice-title { font-size: 26px; margin: 0 0 2px; letter-spacing: 1px; }
+            .title-line { width: 70px; height: 2px; margin-bottom: 5px; }
+            .meta-table td { padding: 1px 3px; font-size: 10.5px; }
+            .meta-table td.label { width: 65px; }
+
+            /* Customer */
+            .customer {
+                margin-top: 7px; padding: 5px 10px; border-radius: 4px;
+                border: 1px solid #999; border-left: 3px solid var(--red);
+            }
+            .customer td { padding: 1px 3px; }
+            .customer .avatar { display: none; }
+            .customer td[width="80"] { display: none; }
+            .section-title { font-size: 11px; margin: 0 0 1px; }
+            .section-line { width: 60px; height: 1px; margin-bottom: 3px; }
+            .cust-label { width: 50px; }
+
+            /* Items */
+            .items { margin-top: 7px; border-radius: 4px; border: 1px solid #999; }
+            /* .items th {
+                color: #000 !important; font-size: 9.5px; padding: 4px 5px;
+                border: none; border-bottom: 1.5px solid #000;
+                border-right: 1px solid #bbb;
+            } */
+            .items th:last-child { border-right: none; }
+            .items td { padding: 4px 5px; font-size: 10px; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+            .items td:last-child { border-right: none; }
+            .items tr { page-break-inside: avoid; }
+
+            /* Note + totals */
+            .bottom { margin-top: 7px; }
+            .note-box { padding: 5px 10px; min-height: 0; margin-right: 8px; border-radius: 4px; border: 1px solid #999; }
+            .note-text { margin-top: 2px; line-height: 1.3; }
+            .totals { border-radius: 4px; border: 1px solid #999; }
+            .totals td { padding: 3px 10px; font-size: 10.5px; }
+            .totals tr.highlight td { font-weight: bold; }
+            /* .totals tr.grand td {
+                color: #000 !important; font-size: 13px; padding: 5px 10px;
+                border-top: 1.5px solid #000;
+            } */
+            .totals tr.grand td.val { font-size: 15px; }
+
+            /* Footer */
+            .footer { margin-top: 8px; padding-top: 6px; border-top-width: 1px; }
+            .footer td { font-size: 9px; padding: 0 5px; }
+            .thanks { font-size: 18px; }
+            .thanks-sub { font-size: 7px; letter-spacing: 1px; margin-top: 2px; }
+            .guarantee { font-size: 7px; letter-spacing: 1px; line-height: 1.5; }
+
+            .sheet { page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -177,18 +251,13 @@
     if ($delivery < 0) { $delivery = 0; }
 @endphp
 
+<div class="sheet">
+
 {{-- HEADER --}}
 <table class="header">
     <tr>
         <td class="brand-cell">
             <img src="{{ asset($settings->logo) }}" class="logo" alt="Logo">
-            <!-- <div class="brand-title">
-                @php
-                    $nameParts = explode(' ', $settings->app_name ?? 'MH GALLERY', 2);
-                @endphp
-                <h1 class="brand-name"><span>{{ $nameParts[0] }}</span> {{ $nameParts[1] ?? '' }}</h1>
-                <div class="tagline">House of Royal Fragrance</div>
-            </div> -->
 
             <table class="contact-row">
                 <tr>
@@ -302,7 +371,7 @@
                 </tr>
                 @endif
 
-                @if($tax > 0)
+                @if($settings->tax > 0)
                 <tr>
                     <td>Tax ({{ $settings->tax }}%)</td>
                     <td class="val">৳{{ number_format($tax, 2) }}</td>
@@ -348,6 +417,8 @@
             </td>
         </tr>
     </table>
+</div>
+
 </div>
 
 </body>

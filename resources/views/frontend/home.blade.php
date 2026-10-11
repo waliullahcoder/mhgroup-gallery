@@ -100,17 +100,20 @@ return $subCategory->products;
 
                                                 <p>{{ $product->code }}</p>
 
-                                                <span class="product-card-price">
-                                                    @if($product->discount > 0)
-                                                    <del>
-                                                        {{ number_format($product->regular_price) }} ৳
-                                                    </del>
-                                                    @endif
-
-                                                    <ins>
-                                                        {{ number_format($product->sale_price) }} ৳
-                                                    </ins>
-                                                </span>
+                                               <span class="product-card-price">
+                                                        @if($product->discount>0)
+                                                        <del>
+                                                            <span class="Price-amount">
+                                                                 {{ number_format($product->regular_price, 2) }} <span class="Price-currencySymbol">৳</span>
+                                                            </span>
+                                                        </del>
+                                                        @endif
+                                                        <ins>
+                                                            <span class="Price-amount">
+                                                                 {{ number_format($product->sale_price, 2) }} <span class="Price-currencySymbol">৳</span>
+                                                            </span>
+                                                        </ins>
+                                                    </span>
                                             </div>
                                         </a>
 
