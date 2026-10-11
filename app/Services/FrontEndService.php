@@ -157,34 +157,19 @@ return Category::whereNotNull('parent_id')
 }
 public function getSubCategoryAllHeaderProductOnly()
 {
-// return Category::whereNotNull('parent_id')
-//     ->whereIn('parent_id', [5])
-//     ->with(['products' => function($query) {
-//             $query->where('status', 1)->inRandomOrder();
-//         }, 'products.variants'])
-//     ->orderBy('serial', 'asc')
-//     ->get();
-return Category::where('parent_id', 5)
-    ->with([
-        'products' => function ($query) {
-            $query->select([
-                'products.id',
-                'products.code',
-                'products.name',
-                'products.discount',
-                'products.regular_price',
-                'products.sale_price',
-                'products.thumbnail',
-            ])
-            ->where('products.status', 1)
-            ->inRandomOrder()
-            ->limit(6);
-        },
-
-        'products.variants'
-    ])
-    ->orderBy('serial', 'asc')
-    ->get();
+    return Category::whereNull('parent_id')
+        ->where('position', 'header')
+        ->with([
+            'subcategories' => function ($query) {
+                $query->orderBy('serial', 'asc');
+            },
+            'subcategories.products' => function ($query) {
+                $query->where('products.status', 1)
+                    ->with('variants');
+            },
+        ])
+        ->orderBy('serial', 'asc')
+        ->get();
 }
 
 //সিয়ান যুগপূর্তি অফার and রবিউল আউয়াল সীরাত গ্রন্থমালা

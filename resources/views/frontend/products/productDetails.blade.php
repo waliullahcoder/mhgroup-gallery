@@ -667,11 +667,11 @@ document.addEventListener('DOMContentLoaded', function () {
                                 Description
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#information">
                                 Information
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#reviews">
                                 Reviews ({{ $product->reviews->count() }})
@@ -685,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             {!! $product->description !!}
                         </div>
 
-                        <div class="tab-pane fade" id="information">
+                        <!-- <div class="tab-pane fade" id="information">
                             <table class="table table-bordered">
                                 <tr>
                                     <th>Category</th>
@@ -708,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <td>{{ $product->uom->name??'N/A' }}</td>
                                 </tr>
                             </table>
-                        </div>
+                        </div> -->
 
                         
 

@@ -114,7 +114,7 @@
                                     class="form-check-input me-2"
                                     id="preorder">
 
-                                Pre Order Discount Apply
+                                Advance Payment for Discount Apply
                                 {{ $settings->discount_type=='percent'
                                     ? '('.$settings->discount.'%)'
                                     : '' }}
@@ -131,14 +131,14 @@
                     <div id="preorderBox" class="mt-3" style="display:none;">
                             <div class="mb-3">
                                 <label class="form-label fw-bold">
-                                    <span class="text-danger">*</span>(প্রি-অর্ডার ডিসকাউন্ট  সুবিধা পেতে চাইলে আগে পেমেন্ট করুন এবং পণ্যটি গ্রহন করতে ১০ দিন ডেলিভারির জন্য অপেক্ষা করুন।  Transaction ID  ভুল প্রবেশ করলে আপনার অর্ডার গ্রহন করা হবে না।)
+                                    <span class="text-danger">*</span>(Advance Payment for ডিসকাউন্ট  সুবিধা পেতে চাইলে আগে পেমেন্ট করুন এবং পণ্যটি গ্রহন করতে ১০ দিন ডেলিভারির জন্য অপেক্ষা করুন।  Transaction ID  ভুল প্রবেশ করলে আপনার অর্ডার গ্রহন করা হবে না।)
                                 </label>
 
                                 <input type="text"
                                     class="form-control"
                                     id="transaction_id"
                                     name="transaction_id"
-                                    placeholder="প্রি-অর্ডার ট্রাঞ্জেকশন আইডি প্রবেশ করুন এইখানে and then click on 🛒 Place Order Button ">
+                                    placeholder="Advance Payment ট্রাঞ্জেকশন আইডি প্রবেশ করুন এইখানে and then click on 🛒 Place Order Button ">
                             </div>
 
                            <button type="button" class="pay-btn border-0" data-bs-toggle="modal" data-bs-target="#paymentModal">
@@ -202,7 +202,7 @@
                             </span>
 
                         </label>
-                         <label class="delivery-option">
+                         <!-- <label class="delivery-option">
 
                             <input
                                 type="radio"
@@ -240,7 +240,7 @@
                                 ৳1500
                             </span>
 
-                        </label>
+                        </label> -->
 
                     </div>
 
@@ -325,7 +325,7 @@
                                     <span class="radio-ui"></span>
                                     <span class="method-icon bkash">৳</span>
                                     <span class="method-info">
-                                        <strong>bKash <span style="font-size:12px;">01916304877(Personal)</span></strong>
+                                        <strong>bKash <span style="font-size:12px;">01833972350(Personal)</span></strong>
                                         <small>মোবাইল ব্যাংকিং — সবচেয়ে জনপ্রিয়</small>
                                     </span>
                                     <span class="popular-badge">Popular</span>
@@ -453,7 +453,7 @@
 
                                 <strong>bKash</strong><br>
                                 <small class="text-danger">
-                                    Personal: 01921588567
+                                    Personal: 01833972350
                                 </small>
                             </label>
 
@@ -465,7 +465,7 @@
 
                                 <strong>Nagad</strong><br>
                                 <small class="text-danger">
-                                    Personal: 01921588567
+                                    Personal: 01833972350
                                 </small>
                             </label>
 
@@ -477,7 +477,7 @@
 
                                 <strong>Rocket</strong><br>
                                 <small class="text-danger">
-                                    Personal: 019215885673
+                                    Personal: 01833972350
                                 </small>
                             </label>
 
@@ -490,15 +490,18 @@
                                 <strong>Bank Account / Credit Card</strong><br>
 
                                 <small class="text-primary">
-                                    Account Name : MH Gallery
+                                    Account Name : MD MOZAMMEL HOSSAIN
                                 </small><br>
 
                                 <small class="text-primary">
-                                    Bank : Dutch Bangla Bank PLC
+                                    Bank : IFIC Bank PLC
                                 </small><br>
 
                                 <small class="text-primary">
-                                    A/C No : 123456789012
+                                    A/C No : 0210047102811
+                                </small><br>
+                                <small class="text-primary">
+                                    CARD No : 4587900916999794
                                 </small>
                             </label>
 
@@ -507,10 +510,10 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">
-                            উপর থেকে আপনার পছন্দমত পেমেন্ট পদ্ধতি নির্বাচন করে পণ্যের মূল্য পরিশোধ করুন এবং Transaction ID টি প্রবেশ করুন প্রি-অর্ডার ট্রাঞ্জেকশন আইডির জায়গায়। 
+                            উপর থেকে আপনার পছন্দমত পেমেন্ট পদ্ধতি নির্বাচন করে পণ্যের মূল্য পরিশোধ করুন এবং Transaction ID টি প্রবেশ করুন Advance Payment ট্রাঞ্জেকশন আইডির জায়গায়। 
                             বিস্তারিত জানতে হোয়াটসঅ্যাপে যোগাযোগ করুনঃ
-                            <a href="https://wa.me/8801575020231" target="_blank">
-                                +8801575020231
+                            <a href="https://wa.me/8801933989325" target="_blank">
+                                +8801933989325
                             </a>
                         </label>
                     </div>

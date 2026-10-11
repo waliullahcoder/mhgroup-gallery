@@ -33,7 +33,7 @@
     @include('layouts.frontend.partial.scripts')
 
  <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/8801575020231" 
+<a href="https://wa.me/8801933989325" 
    class="floating-whatsapp" 
    target="_blank" 
    rel="noopener noreferrer"

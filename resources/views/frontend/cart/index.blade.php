@@ -173,14 +173,15 @@
                     </div>
 
                     <div class="d-flex justify-content-between mb-2">
-                        <span>(Only for Pre-Order) Discount {{ $settings->discount_type=='percent' ? '('.$settings->discount.'%)' : '' }}</span>
+                        <span>(Only for Advance) Discount {{ $settings->discount_type=='percent' ? '('.$settings->discount.'%)' : '' }}</span>
                         <strong id="discount">- ৳ 0.00</strong>
                     </div>
-
+                    @if($settings->tax>0)
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tax ({{$settings->tax}}%)</span>
                         <strong id="tax">৳ 0.00</strong>
                     </div>
+                    @endif
 
                     <hr>
 
